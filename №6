@@ -1,0 +1,15 @@
+namespace _6
+{
+    internal class Program
+    {
+        public static bool IsLeapYear(int year)
+        {
+            return year % 400 == 0 || (year % 4 == 0 && year % 100 != 0);
+        }
+        static void Main(string[] args)
+        {
+            int year = int.Parse(Console.ReadLine());
+            if (IsLeapYear(year)) { Console.WriteLine($"12/09/{year}"); } else { Console.WriteLine($"13/09/{year}"); }
+        }
+    }
+}
