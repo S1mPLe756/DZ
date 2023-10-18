@@ -1,0 +1,26 @@
+namespace _1
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            double eps = 0.00000000001;
+            Console.WriteLine(FindPi(eps));
+            Console.WriteLine(Math.PI);
+        }
+        public static double FindPi(double eps)
+        {
+            double y1 = 0, y2 = 10, sum = 0;
+            int k = 0;
+            while (Math.Abs(y1 - y2) > eps)
+            {
+                y2 = y1;
+                y1 = (-1.0) / (2 * k + 1);
+                if (k % 2 == 0) { y1 *= -1; }
+                sum += y1;
+                k++;
+            }
+            return 4 * sum;
+        }
+    }
+}
