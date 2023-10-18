@@ -1,0 +1,79 @@
+namespace _6
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            double a = 1, b = 3, n = 10000;
+            Console.WriteLine(CalcLeftRect(a, b, n));
+            Console.WriteLine(CalcRightRect(a, b, n));
+            Console.WriteLine(CalcTrapeze(a, b, n));
+            Console.WriteLine(CalcSympson(a, b, n));
+            Console.WriteLine(CalcMonteKarlo(a, b, n));
+        }
+        public static double F(double x)
+        {
+            return Math.Cos(Math.Sin(x));
+        }
+        public static double CalcLeftRect(double a, double b, double n)
+        {
+            double h = (b - a) / n;
+            double sum = 0;
+            for (int i = 0; i < n - 1; i++)
+            {
+                sum += h * F(a + i * h);
+            }
+            return sum;
+        }
+        public static double CalcRightRect(double a, double b, double n)
+        {
+            double h = (b - a) / n;
+            double sum = 0;
+            for (int i = 1; i < n; i++)
+            {
+                sum += h * F(a + i * h);
+            }
+            return sum;
+        }
+        public static double CalcTrapeze(double a, double b, double n)
+        {
+            double h = (b - a) / n;
+            double sum = F(a) + F(b);
+            for (int i = 1; i < n - 1; i++)
+            {
+                sum += 2 * F(a + i * h);
+            }
+            sum *= h / 2;
+            return sum;
+        }
+        public static double CalcSympson(double a, double b, double n)
+        {
+            double h = (b - a) / n;
+            double sum = F(a) + F(b);
+            int k;
+            for (int i = 1; i < n - 1; i++)
+            {
+                k = 2 + 2 * (i % 2);
+                sum += k * F(a + i * h);
+            }
+            sum *= h / 3;
+            return sum;
+        }
+        public static double CalcMonteKarlo(double a, double b, double n)
+        {
+            double x = 1 / n;
+            double y = 2 / n;
+            double count = 0, k = 0;
+            for (double i = a; i <= b; i += x)
+            {
+                double f = F(i);
+                for (double j = 0; j <= 1; j += y)
+                {
+                    if (j >= 0 && j <= f) count++;
+                    k++;
+                }
+            }
+            return count / k * 2;
+        }
+    }
+}
