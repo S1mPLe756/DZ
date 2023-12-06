@@ -57,14 +57,14 @@ namespace CR
 
         public Matrix Shift(Matrix m)
         {
-            var res = new Matrix(columns, rows);
-            for (int j = 0; j < columns; j++)
+            var res = new Matrix(rows, columns);
+            for (int j = 0; j < rows; j++)
             {
-                for (int i = 1; i < rows; i++)
+                for (int i = 1; i < columns; i++)
                 {
                     res[j, i] = m[j, i - 1];
                 }
-                res[j, 0] = m[j, rows - 1];
+                res[j, 0] = m[j, columns - 1];
             }
             return res;
         }
