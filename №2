@@ -1,0 +1,38 @@
+namespace _2
+{
+    internal class Program
+    {
+        static void Main()
+        {
+            int[] numbers = { 2, 6, 4, 7, 4, 9, 8, 6 };
+            var duplicates = new HashSet<int>();
+
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                int currentNumber = numbers[i];
+                if (duplicates.Contains(currentNumber))
+                {
+                    for (int j = 0; j < numbers.Length; j++)
+                    {
+                        if (numbers[j] == currentNumber)
+                        {
+                            int temp = numbers[j];
+                            numbers[j] = numbers[0];
+                            numbers[0] = temp;
+                            break;
+                        }
+                    }
+                    break;
+                }
+                else
+                {
+                    duplicates.Add(currentNumber);
+                }
+            }
+            foreach (var num in numbers)
+            {
+                Console.Write($"{num} ");
+            }
+        }
+    }
+}
