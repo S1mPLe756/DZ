@@ -1,0 +1,23 @@
+namespace _1
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            var str = Console.ReadLine().ToLower();
+            var list = new List<string>();
+            
+            foreach (var letter in str)
+            {
+                if (char.IsLetter(letter))
+                {
+                    list.Add(letter.ToString());
+                }
+            }
+            foreach(var letter in list)
+            {
+                Console.Write(letter);
+            }
+        }
+    }
+}
